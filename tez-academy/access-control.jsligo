@@ -1,0 +1,41 @@
+/**
+ *  Chapter 16 : Built-ins
+ *
+ *  1- Check that the originitor address is indeed our ship_address, or fail with "Access denied"
+ *  2- Check that the sent amount corresponds to the purchase_price, or fail with "Incorrect amount"
+ *
+ *  cli test command
+ *    - incorret address:
+ *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" -e main 'unit' 'unit' --amount 10`
+ *    - incorrect amount:
+ *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 1`
+ *    - pass:
+ *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 10`
+ */
+
+type storage = unit;
+type parameter =
+| ["Purchase"];
+type return_ = [list<operation>, storage];
+
+const purchase = (store: storage) : return_ => {
+  const ship_address: address = ("tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" as address);
+  const purchase_price: tez = 10 as tez;
+
+  if (Tezos.get_source() != ship_address) {
+    return failwith ("Access denied");
+  } else {
+    unit;
+  };
+  if (Tezos.get_amount() != purchase_price) {
+    return failwith ("Incorrect amount");
+  } else {
+    unit;
+  };
+  return [list([]), store];
+};
+
+const main = (action: parameter, store: storage) : return_ =>
+  match(action, {
+    Purchase: () => purchase(store),
+  });
