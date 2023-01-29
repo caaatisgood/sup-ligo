@@ -1,11 +1,12 @@
 /**
  *  Chapter 16 : Built-ins
+ *  https://academy.ligolang.org/js/chapter-built-ins
  *
  *  1- Check that the originitor address is indeed our ship_address, or fail with "Access denied"
  *  2- Check that the sent amount corresponds to the purchase_price, or fail with "Incorrect amount"
  *
  *  cli test command
- *    - incorret address:
+ *    - incorret source:
  *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" -e main 'unit' 'unit' --amount 10`
  *    - incorrect amount:
  *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 1`
@@ -18,10 +19,11 @@ type parameter =
 | ["Purchase"];
 type return_ = [list<operation>, storage];
 
-const purchase = (store: storage) : return_ => {
+const purchase = (store: storage): return_ => {
   const ship_address: address = ("tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" as address);
   const purchase_price: tez = 10 as tez;
 
+  // Type your solution below
   if (Tezos.get_source() != ship_address) {
     return failwith ("Access denied");
   } else {
