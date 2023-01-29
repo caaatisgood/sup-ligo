@@ -37,7 +37,7 @@ const purchase = (store: storage): return_ => {
   return [list([]), store];
 };
 
-const main = (action: parameter, store: storage) : return_ =>
+const main = (action: parameter, store: storage): return_ =>
   match(action, {
     Purchase: () => purchase(store),
   });

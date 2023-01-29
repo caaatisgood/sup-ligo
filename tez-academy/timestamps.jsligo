@@ -1,0 +1,36 @@
+/**
+ *  Chapter 18 : Timestamps
+ *  https://academy.ligolang.org/js/chapter-timestamps
+ *
+ *  1- Transfer the purchase_price to the vendor_contract
+ *  2- Don't forget to return your operation.
+ *
+ *  cli test command
+ *    - incorrect source:
+ *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" --amount 10`
+ *    - incorrect amount:
+ *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 2`
+ *    - pass:
+ *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 10`
+ */
+
+type mainAction = 
+| ["GetEta"];
+
+type storage = {
+  eta: timestamp
+};
+
+type return_ = [list<operation>, storage];
+
+const one_day: int = 86_400;
+
+const getEta = (_store: storage): return_ => {
+  const eta: timestamp = Tezos.get_now() + one_day * 6;
+  return [list([]), { eta }];
+};
+
+const main = (action: mainAction, store: storage): return_ =>
+  match (action, {
+    GetEta: () => getEta(store),
+  });
