@@ -7,11 +7,11 @@
  *
  *  cli test command
  *    - incorrect source:
- *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" --amount 10`
+ *      `ligo run dry-run 18-transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" --amount 10`
  *    - incorrect amount:
- *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 2`
+ *      `ligo run dry-run 18-transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 2`
  *    - pass:
- *      `ligo run dry-run tez-academy/transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 10`
+ *      `ligo run dry-run 18-transactions.jsligo -e main 'Pay({ item: 0 as nat, price: 10 as tez })' 'unit' --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" --amount 10`
  */
 
 type mainAction = 

@@ -1,0 +1,34 @@
+/**
+ *  Chapter 19 : Option
+ *  https://academy.ligolang.org/js/chapter-option
+ *
+ *  1- Notice the weapons mapping which maps the name of each weapon to its corresponding input of power. We want to increase the power of the Main Laser but mapping returns optional results as they might not be found in the mapping. Define the constant main_laser_power as an optional int from selecting "Main Laser" from the weapons mapping.
+ *  2- Writte a pattern matching for main_laser_power. If it exists, increase the power of the "Main Laser" by 1 (use i as temporary matching variable). If it does not exist in the mapping, fail with "Weapon not found"
+ *
+ *  cli test command
+ *    `ligo run dry-run 19-options.jsligo -e main 'unit' '(Map.empty as weapon_power)'`
+ */
+
+type weapon_power = map<string, int>;
+
+const main = (_param: unit, _store: weapon_power): [list <operation>, weapon_power] => {
+  let weapons: weapon_power =
+    Map.literal(list([
+      ["Main Laser", 5],
+      ["Right Laser", 2],
+      ["Left Laser", 3]
+    ]));
+
+  // Type your solution below
+  const main_laser_power: option<int> = Map.find_opt("Main Laser", weapons);
+
+  weapons = match(main_laser_power, {
+    Some: i => Map.update("Main Laser", Some(i + 1), weapons),
+    None: () => failwith("Weapon not found")
+  });
+
+  return [
+    (list([]) as list <operation>),
+    weapons
+  ];
+};

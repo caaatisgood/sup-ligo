@@ -7,11 +7,11 @@
  *
  *  cli test command
  *    - incorret source:
- *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" -e main 'unit' 'unit' --amount 10`
+ *      `ligo run dry-run 16-access-control.jsligo --source "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx" -e main 'unit' 'unit' --amount 10`
  *    - incorrect amount:
- *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 1`
+ *      `ligo run dry-run 16-access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 1`
  *    - pass:
- *      `ligo run dry-run tez-academy/access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 10`
+ *      `ligo run dry-run 16-access-control.jsligo --source "tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV" -e main 'unit' 'unit' --amount 10`
  */
 
 type storage = unit;
